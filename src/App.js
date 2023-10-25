@@ -21,14 +21,21 @@ export default function App() {
 
     }
 
+    const chunkArray = (arr, size) =>
+        arr.length > size
+            ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)]
+            : [arr];
+
     const getUnits = (n) => (n%100) - (n%100 - ((n%100) % 10))
     const getDozens = (n) => (n%100) - (n%100 % 10)
     const getHundreds = (n) => n - (n%100)
 
     function handleChange(e) {
         const { value } = e.target
-        const filtered = Number(value.replace(/\D/g, ''))
-        const locale = filtered.toLocaleString('pt-BR', {useGrouping: true})
+        // const filtered = Number(value.replace(/\D/g, ''))
+        // const split = chunkArray(filtered.split("").reverse(), 3).reverse().map(i => i.reverse())
+        const filtered = value.replace(/\D/g, '').replace(/^0+/, '')
+        const locale = chunkArray(filtered.split("").reverse(), 3).reverse().map(i => i.reverse().join('')).join('.')
         const split = locale.split('.')
         let numberWritten = ''
         for (let i in split) {
@@ -83,7 +90,7 @@ export default function App() {
         const firstLetter = numberWritten.charAt(0).toUpperCase()
         const formated = `${firstLetter}${numberWritten.slice(1)}.`
 
-        setnumInput(locale)
+        locale ? setnumInput(locale) : setnumInput(0)
         setNumTrans(formated)
     }
 
