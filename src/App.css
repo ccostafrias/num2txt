@@ -9,10 +9,10 @@
 
 :root {
     --color-white: #fff;
-    --color-body-bg-color: #c6c4ba;
-    --color-text-color: #463F3A;
-    --color-gray-dark: #8A817C;
-    --color-gray-light: #BCB8B1;
+    --color-body-bg-color: #e4ded2;
+    --color-text-color: #4d493e;
+    --color-gray-dark: #8f8472;
+    --color-gray-light: #c1b59f;
     --color-box-shadow: rgba(0, 0, 0, .1);
     
     --font-main: 'Poppins', sans-serif;
